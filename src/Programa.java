@@ -13,7 +13,9 @@ public class Programa {
                                 + "2. Recorrer el árbol InOrden\n"
                                 + "3. Recorrer el árbol PreOrden\n"
                                 + "4. Recorrer el árbol PostOrden\n"
-                                + "5. Salir\n"
+                                + "5. Buscar un nodo en el árbol\n"
+                                + "6. Eliminar un nodo del árbol\n"
+                                + "7. Salir\n"
                                 + "Elige una opción...",
                         "Árboles binarios",JOptionPane.QUESTION_MESSAGE));
                 switch (opcion){
@@ -28,6 +30,7 @@ public class Programa {
                         break;
                     case 2:
                         if(!(arbol.estaVacio())){
+                            System.out.println();
                             arbol.inOrden(arbol.raiz);
                         } else{
                             JOptionPane.showMessageDialog(null, "El árbol está vacío",
@@ -36,6 +39,7 @@ public class Programa {
                         break;
                     case 3:
                         if(!(arbol.estaVacio())){
+                            System.out.println();
                             arbol.preOrden(arbol.raiz);
                         } else{
                             JOptionPane.showMessageDialog(null, "El árbol está vacío",
@@ -44,13 +48,48 @@ public class Programa {
                         break;
                     case 4:
                         if(!(arbol.estaVacio())){
+                            System.out.println();
                             arbol.postOrden(arbol.raiz);
                         } else{
                             JOptionPane.showMessageDialog(null, "El árbol está vacío",
                                     "Cuidado", JOptionPane.INFORMATION_MESSAGE);
                         }
                         break;
+
                     case 5:
+                        if(!(arbol.estaVacio())){
+                            elemento = Integer.parseInt(JOptionPane.showInputDialog(null,
+                                    "Ingresa el número del nodo buscado...","Buscando nodo",
+                                    JOptionPane.QUESTION_MESSAGE));
+                            if(arbol.buscarNodo(elemento) == null){
+                                JOptionPane.showMessageDialog(null, "Nodo no se encuentra en el árbol",
+                                        "Nodo no encontrado", JOptionPane.INFORMATION_MESSAGE);
+                            } else{
+                                System.out.println("Nodo encontrado, sus datos son: " + arbol.buscarNodo(elemento));
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "El árbol está vacío",
+                                    "Cuidado", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        break;
+                    case 6:
+                        if(!(arbol.estaVacio())){
+                            elemento = Integer.parseInt(JOptionPane.showInputDialog(null,
+                                    "Ingresa el número del nodo a eliminar...","Eliminando nodo",
+                                    JOptionPane.QUESTION_MESSAGE));
+                            if(arbol.eliminar(elemento) == false){
+                                JOptionPane.showMessageDialog(null, "Nodo no se encuentra en el árbol",
+                                        "Nodo no encontrado", JOptionPane.INFORMATION_MESSAGE);
+                            } else{
+                                JOptionPane.showMessageDialog(null, "El nodo ha sido eliminado del árbol",
+                                        "Nodo eliminado", JOptionPane.INFORMATION_MESSAGE);
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "El árbol está vacío",
+                                    "Cuidado", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        break;
+                    case 7:
                         JOptionPane.showMessageDialog(null, "Aplicación finalizada",
                                 "Fin", JOptionPane.INFORMATION_MESSAGE);
                         break;
@@ -63,6 +102,6 @@ public class Programa {
             } catch (NumberFormatException n){
                 JOptionPane.showMessageDialog(null,"Error " + n.getMessage());
             }
-        } while(opcion!=5);
+        } while(opcion!=7);
     }
 }
